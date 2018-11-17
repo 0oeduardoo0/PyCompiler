@@ -1,5 +1,9 @@
 # Compilador Basico
 
+Se hace uso de la libreria Python Lex-Yacc para facilitar el analisis lexico-sintactico, por lo tanto debe estar instalada:
+
+- sudo apt-get install python-ply
+
 # Modo de uso
 
 python compilador.py ejemplo

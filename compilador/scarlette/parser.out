@@ -1,0 +1,300 @@
+Created by PLY version 3.11 (http://www.dabeaz.com/ply)
+
+Unused terminals:
+
+    comment
+
+Grammar
+
+Rule 0     S' -> programa
+Rule 1     programa -> funciones
+Rule 2     funciones -> funcion funciones
+Rule 3     funciones -> empty
+Rule 4     funcion -> identificador llavei instrucciones llaved
+Rule 5     instrucciones -> instruccion instrucciones
+Rule 6     instrucciones -> empty
+Rule 7     instruccion -> identificador pizquierdo operandos pderecho
+Rule 8     operandos -> elemento coma operandos
+Rule 9     operandos -> elemento
+Rule 10    elemento -> numero
+Rule 11    elemento -> flotante
+Rule 12    elemento -> cadena
+Rule 13    elemento -> identificador
+Rule 14    elemento -> empty
+Rule 15    empty -> <empty>
+
+Terminals, with rules where they appear
+
+cadena               : 12
+coma                 : 8
+comment              : 
+error                : 
+flotante             : 11
+identificador        : 4 7 13
+llaved               : 4
+llavei               : 4
+numero               : 10
+pderecho             : 7
+pizquierdo           : 7
+
+Nonterminals, with rules where they appear
+
+elemento             : 8 9
+empty                : 3 6 14
+funcion              : 2
+funciones            : 1 2
+instruccion          : 5
+instrucciones        : 4 5
+operandos            : 7 8
+programa             : 0
+
+Parsing method: LALR
+
+state 0
+
+    (0) S' -> . programa
+    (1) programa -> . funciones
+    (2) funciones -> . funcion funciones
+    (3) funciones -> . empty
+    (4) funcion -> . identificador llavei instrucciones llaved
+    (15) empty -> .
+
+    identificador   shift and go to state 1
+    $end            reduce using rule 15 (empty -> .)
+
+    funcion                        shift and go to state 5
+    programa                       shift and go to state 2
+    empty                          shift and go to state 4
+    funciones                      shift and go to state 3
+
+state 1
+
+    (4) funcion -> identificador . llavei instrucciones llaved
+
+    llavei          shift and go to state 6
+
+
+state 2
+
+    (0) S' -> programa .
+
+
+
+state 3
+
+    (1) programa -> funciones .
+
+    $end            reduce using rule 1 (programa -> funciones .)
+
+
+state 4
+
+    (3) funciones -> empty .
+
+    $end            reduce using rule 3 (funciones -> empty .)
+
+
+state 5
+
+    (2) funciones -> funcion . funciones
+    (2) funciones -> . funcion funciones
+    (3) funciones -> . empty
+    (4) funcion -> . identificador llavei instrucciones llaved
+    (15) empty -> .
+
+    identificador   shift and go to state 1
+    $end            reduce using rule 15 (empty -> .)
+
+    funciones                      shift and go to state 7
+    empty                          shift and go to state 4
+    funcion                        shift and go to state 5
+
+state 6
+
+    (4) funcion -> identificador llavei . instrucciones llaved
+    (5) instrucciones -> . instruccion instrucciones
+    (6) instrucciones -> . empty
+    (7) instruccion -> . identificador pizquierdo operandos pderecho
+    (15) empty -> .
+
+    identificador   shift and go to state 8
+    llaved          reduce using rule 15 (empty -> .)
+
+    instruccion                    shift and go to state 10
+    instrucciones                  shift and go to state 9
+    empty                          shift and go to state 11
+
+state 7
+
+    (2) funciones -> funcion funciones .
+
+    $end            reduce using rule 2 (funciones -> funcion funciones .)
+
+
+state 8
+
+    (7) instruccion -> identificador . pizquierdo operandos pderecho
+
+    pizquierdo      shift and go to state 12
+
+
+state 9
+
+    (4) funcion -> identificador llavei instrucciones . llaved
+
+    llaved          shift and go to state 13
+
+
+state 10
+
+    (5) instrucciones -> instruccion . instrucciones
+    (5) instrucciones -> . instruccion instrucciones
+    (6) instrucciones -> . empty
+    (7) instruccion -> . identificador pizquierdo operandos pderecho
+    (15) empty -> .
+
+    identificador   shift and go to state 8
+    llaved          reduce using rule 15 (empty -> .)
+
+    instruccion                    shift and go to state 10
+    instrucciones                  shift and go to state 14
+    empty                          shift and go to state 11
+
+state 11
+
+    (6) instrucciones -> empty .
+
+    llaved          reduce using rule 6 (instrucciones -> empty .)
+
+
+state 12
+
+    (7) instruccion -> identificador pizquierdo . operandos pderecho
+    (8) operandos -> . elemento coma operandos
+    (9) operandos -> . elemento
+    (10) elemento -> . numero
+    (11) elemento -> . flotante
+    (12) elemento -> . cadena
+    (13) elemento -> . identificador
+    (14) elemento -> . empty
+    (15) empty -> .
+
+    numero          shift and go to state 17
+    flotante        shift and go to state 20
+    cadena          shift and go to state 18
+    identificador   shift and go to state 15
+    coma            reduce using rule 15 (empty -> .)
+    pderecho        reduce using rule 15 (empty -> .)
+
+    operandos                      shift and go to state 16
+    empty                          shift and go to state 19
+    elemento                       shift and go to state 21
+
+state 13
+
+    (4) funcion -> identificador llavei instrucciones llaved .
+
+    identificador   reduce using rule 4 (funcion -> identificador llavei instrucciones llaved .)
+    $end            reduce using rule 4 (funcion -> identificador llavei instrucciones llaved .)
+
+
+state 14
+
+    (5) instrucciones -> instruccion instrucciones .
+
+    llaved          reduce using rule 5 (instrucciones -> instruccion instrucciones .)
+
+
+state 15
+
+    (13) elemento -> identificador .
+
+    coma            reduce using rule 13 (elemento -> identificador .)
+    pderecho        reduce using rule 13 (elemento -> identificador .)
+
+
+state 16
+
+    (7) instruccion -> identificador pizquierdo operandos . pderecho
+
+    pderecho        shift and go to state 22
+
+
+state 17
+
+    (10) elemento -> numero .
+
+    coma            reduce using rule 10 (elemento -> numero .)
+    pderecho        reduce using rule 10 (elemento -> numero .)
+
+
+state 18
+
+    (12) elemento -> cadena .
+
+    coma            reduce using rule 12 (elemento -> cadena .)
+    pderecho        reduce using rule 12 (elemento -> cadena .)
+
+
+state 19
+
+    (14) elemento -> empty .
+
+    coma            reduce using rule 14 (elemento -> empty .)
+    pderecho        reduce using rule 14 (elemento -> empty .)
+
+
+state 20
+
+    (11) elemento -> flotante .
+
+    coma            reduce using rule 11 (elemento -> flotante .)
+    pderecho        reduce using rule 11 (elemento -> flotante .)
+
+
+state 21
+
+    (8) operandos -> elemento . coma operandos
+    (9) operandos -> elemento .
+
+    coma            shift and go to state 23
+    pderecho        reduce using rule 9 (operandos -> elemento .)
+
+
+state 22
+
+    (7) instruccion -> identificador pizquierdo operandos pderecho .
+
+    identificador   reduce using rule 7 (instruccion -> identificador pizquierdo operandos pderecho .)
+    llaved          reduce using rule 7 (instruccion -> identificador pizquierdo operandos pderecho .)
+
+
+state 23
+
+    (8) operandos -> elemento coma . operandos
+    (8) operandos -> . elemento coma operandos
+    (9) operandos -> . elemento
+    (10) elemento -> . numero
+    (11) elemento -> . flotante
+    (12) elemento -> . cadena
+    (13) elemento -> . identificador
+    (14) elemento -> . empty
+    (15) empty -> .
+
+    numero          shift and go to state 17
+    flotante        shift and go to state 20
+    cadena          shift and go to state 18
+    identificador   shift and go to state 15
+    coma            reduce using rule 15 (empty -> .)
+    pderecho        reduce using rule 15 (empty -> .)
+
+    operandos                      shift and go to state 24
+    empty                          shift and go to state 19
+    elemento                       shift and go to state 21
+
+state 24
+
+    (8) operandos -> elemento coma operandos .
+
+    pderecho        reduce using rule 8 (operandos -> elemento coma operandos .)
+

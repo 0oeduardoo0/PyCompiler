@@ -1,0 +1,193 @@
+Created by PLY version 3.11 (http://www.dabeaz.com/ply)
+
+Unused terminals:
+
+    pizquierdo
+    pderecho
+
+Grammar
+
+Rule 0     S' -> programa
+Rule 1     programa -> instrucciones
+Rule 2     instrucciones -> instruccion instrucciones
+Rule 3     instrucciones -> empty
+Rule 4     instruccion -> identificador operandos punto_y_coma
+Rule 5     operandos -> elemento coma operandos
+Rule 6     operandos -> elemento
+Rule 7     elemento -> numero
+Rule 8     elemento -> identificador
+Rule 9     elemento -> empty
+Rule 10    empty -> <empty>
+
+Terminals, with rules where they appear
+
+coma                 : 5
+error                : 
+identificador        : 4 8
+numero               : 7
+pderecho             : 
+pizquierdo           : 
+punto_y_coma         : 4
+
+Nonterminals, with rules where they appear
+
+elemento             : 5 6
+empty                : 3 9
+instruccion          : 2
+instrucciones        : 1 2
+operandos            : 4 5
+programa             : 0
+
+Parsing method: LALR
+
+state 0
+
+    (0) S' -> . programa
+    (1) programa -> . instrucciones
+    (2) instrucciones -> . instruccion instrucciones
+    (3) instrucciones -> . empty
+    (4) instruccion -> . identificador operandos punto_y_coma
+    (10) empty -> .
+
+    identificador   shift and go to state 1
+    $end            reduce using rule 10 (empty -> .)
+
+    instruccion                    shift and go to state 4
+    instrucciones                  shift and go to state 2
+    programa                       shift and go to state 3
+    empty                          shift and go to state 5
+
+state 1
+
+    (4) instruccion -> identificador . operandos punto_y_coma
+    (5) operandos -> . elemento coma operandos
+    (6) operandos -> . elemento
+    (7) elemento -> . numero
+    (8) elemento -> . identificador
+    (9) elemento -> . empty
+    (10) empty -> .
+
+    numero          shift and go to state 8
+    identificador   shift and go to state 6
+    coma            reduce using rule 10 (empty -> .)
+    punto_y_coma    reduce using rule 10 (empty -> .)
+
+    operandos                      shift and go to state 7
+    empty                          shift and go to state 9
+    elemento                       shift and go to state 10
+
+state 2
+
+    (1) programa -> instrucciones .
+
+    $end            reduce using rule 1 (programa -> instrucciones .)
+
+
+state 3
+
+    (0) S' -> programa .
+
+
+
+state 4
+
+    (2) instrucciones -> instruccion . instrucciones
+    (2) instrucciones -> . instruccion instrucciones
+    (3) instrucciones -> . empty
+    (4) instruccion -> . identificador operandos punto_y_coma
+    (10) empty -> .
+
+    identificador   shift and go to state 1
+    $end            reduce using rule 10 (empty -> .)
+
+    instruccion                    shift and go to state 4
+    instrucciones                  shift and go to state 11
+    empty                          shift and go to state 5
+
+state 5
+
+    (3) instrucciones -> empty .
+
+    $end            reduce using rule 3 (instrucciones -> empty .)
+
+
+state 6
+
+    (8) elemento -> identificador .
+
+    coma            reduce using rule 8 (elemento -> identificador .)
+    punto_y_coma    reduce using rule 8 (elemento -> identificador .)
+
+
+state 7
+
+    (4) instruccion -> identificador operandos . punto_y_coma
+
+    punto_y_coma    shift and go to state 12
+
+
+state 8
+
+    (7) elemento -> numero .
+
+    coma            reduce using rule 7 (elemento -> numero .)
+    punto_y_coma    reduce using rule 7 (elemento -> numero .)
+
+
+state 9
+
+    (9) elemento -> empty .
+
+    coma            reduce using rule 9 (elemento -> empty .)
+    punto_y_coma    reduce using rule 9 (elemento -> empty .)
+
+
+state 10
+
+    (5) operandos -> elemento . coma operandos
+    (6) operandos -> elemento .
+
+    coma            shift and go to state 13
+    punto_y_coma    reduce using rule 6 (operandos -> elemento .)
+
+
+state 11
+
+    (2) instrucciones -> instruccion instrucciones .
+
+    $end            reduce using rule 2 (instrucciones -> instruccion instrucciones .)
+
+
+state 12
+
+    (4) instruccion -> identificador operandos punto_y_coma .
+
+    identificador   reduce using rule 4 (instruccion -> identificador operandos punto_y_coma .)
+    $end            reduce using rule 4 (instruccion -> identificador operandos punto_y_coma .)
+
+
+state 13
+
+    (5) operandos -> elemento coma . operandos
+    (5) operandos -> . elemento coma operandos
+    (6) operandos -> . elemento
+    (7) elemento -> . numero
+    (8) elemento -> . identificador
+    (9) elemento -> . empty
+    (10) empty -> .
+
+    numero          shift and go to state 8
+    identificador   shift and go to state 6
+    coma            reduce using rule 10 (empty -> .)
+    punto_y_coma    reduce using rule 10 (empty -> .)
+
+    operandos                      shift and go to state 14
+    empty                          shift and go to state 9
+    elemento                       shift and go to state 10
+
+state 14
+
+    (5) operandos -> elemento coma operandos .
+
+    punto_y_coma    reduce using rule 5 (operandos -> elemento coma operandos .)
+

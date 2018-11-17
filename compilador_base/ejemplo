@@ -1,0 +1,3 @@
+variable resultado;
+sumar 1, 2, resultado;
+mostrar resultado;

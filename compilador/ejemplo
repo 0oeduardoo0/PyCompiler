@@ -1,0 +1,24 @@
+tabla_de_multiplicar
+{
+  multiplicar(contador, numero, resultado)
+  mostrar(numero, " x ", contador, " = ", resultado)
+
+  sumar(contador, 1, contador)
+
+  # si contador es diferente de 11 ejecuta tabla_de_multiplicar() nuevamente
+  comparar_diferencia(contador, 11, tabla_de_multiplicar)
+}
+
+# esto es un comentario
+
+inicio
+{
+  variable(contador, 1)
+  variable(numero, 1)
+  variable(resultado, 0)
+
+  entrada_numero("Inserta un numero: ", numero)
+
+  # ejecuta la funcion tabla_de_multiplicar
+  tabla_de_multiplicar()
+}
